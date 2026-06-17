@@ -8,23 +8,25 @@
   :root{
     color-scheme: light;
     --cream:#FFF7EE; --card:#FFFFFF; --ink:#1B1A17; --muted:#7A736A;
-    --tomato:#E0392B; --tomato-dark:#B82B20; --gold:#F4B740; --crust:#E0A964;
+    --tomato:#16294A; --tomato-dark:#0D1A33; --gold:#E6B450; --crust:#E0A964;
     --line:#EFE6D8; --green:#4C9A52;
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
   html,body{margin:0;padding:0;}
   body{
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    background:radial-gradient(1200px 600px at 50% -10%, #FFE9CC 0%, var(--cream) 55%);
+    background:radial-gradient(1200px 600px at 50% -10%, #EFE6D5 0%, var(--cream) 55%);
     color:var(--ink); min-height:100vh; padding:22px 16px 60px; display:flex; justify-content:center;
   }
   .wrap{width:100%;max-width:560px;}
-  .brand{font-size:12px;letter-spacing:.22em;font-weight:800;color:var(--tomato);text-transform:uppercase;text-align:center;margin-bottom:6px;}
-  h1{font-size:30px;line-height:1.1;text-align:center;margin:0 0 8px;font-weight:850;letter-spacing:-.01em;}
+  .topbar{display:flex;align-items:center;justify-content:center;gap:11px;margin-bottom:12px;}
+  .logo{height:30px;width:auto;display:block;}
+  .tag{font-size:11px;letter-spacing:.16em;font-weight:800;color:var(--tomato);text-transform:uppercase;border:1.5px solid var(--line);border-radius:999px;padding:4px 10px;}
+  h1{font-size:30px;line-height:1.1;text-align:center;margin:0 0 8px;font-weight:850;letter-spacing:-.01em;color:var(--tomato);}
   .sub{text-align:center;color:var(--muted);font-size:15px;line-height:1.5;margin:0 auto 14px;max-width:440px;}
   .chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:8px;}
   .chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 13px;font-size:13px;font-weight:600;}
-  .tally{text-align:center;font-size:13.5px;font-weight:700;color:var(--green);margin:6px 0 16px;min-height:18px;}
+  .tally{text-align:center;font-size:13.5px;font-weight:700;color:var(--tomato);margin:6px 0 16px;min-height:18px;}
   .card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px 18px 22px;box-shadow:0 18px 40px -22px rgba(120,70,20,.35);}
   .pizza-stage{display:flex;flex-direction:column;align-items:center;margin:4px 0 6px;}
   .pizza-svg{width:230px;height:230px;max-width:70vw;filter:drop-shadow(0 14px 18px rgba(150,90,20,.22));transition:transform .25s cubic-bezier(.34,1.56,.64,1);}
@@ -49,7 +51,7 @@
   .slot.on{border-color:var(--tomato);background:linear-gradient(180deg,#FFF1EF,#FFFDFA);box-shadow:0 8px 18px -12px rgba(224,57,43,.7);}
   .slot.on .tick{background:var(--tomato);border-color:var(--tomato);}
   .slot.on .date{color:var(--tomato-dark);}
-  .send{margin-top:20px;width:100%;border:none;border-radius:15px;padding:16px;font-size:17px;font-weight:800;color:#fff;background:linear-gradient(180deg,#EA4133,var(--tomato-dark));cursor:pointer;box-shadow:0 14px 26px -12px rgba(224,57,43,.8);transition:transform .12s;}
+  .send{margin-top:20px;width:100%;border:none;border-radius:15px;padding:16px;font-size:17px;font-weight:800;color:#fff;background:linear-gradient(180deg,var(--tomato),var(--tomato-dark));cursor:pointer;box-shadow:0 14px 26px -14px rgba(13,26,52,.85);transition:transform .12s;}
   .send:active{transform:translateY(1px) scale(.995);}
   .copywrap{margin-top:12px;text-align:center;}
   .copy{background:none;border:none;color:var(--muted);font-size:13.5px;font-weight:600;cursor:pointer;text-decoration:underline;text-underline-offset:3px;}
@@ -71,7 +73,7 @@
 </head>
 <body>
   <div class="wrap">
-    <div class="brand">10x Founders · Team Alumni</div>
+    <div class="topbar"><img class="logo" src="https://cdn.prod.website-files.com/64985f4d2694ceda9ee26a3d/64985f4d2694ceda9ee26ab9_10x-logo.svg" alt="10x Founders"><span class="tag">Team Alumni</span></div>
     <h1>Alumni Pizza Night 🍕</h1>
     <p class="sub">The old crew, back in one room, with proper pizza. Build your availability pizza — the night with the most slices wins.</p>
 
