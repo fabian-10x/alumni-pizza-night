@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10x Alumni Pizza Night 🍕</title>
+<style>
+  :root{
+    color-scheme: light;
+    --cream:#FFF7EE; --card:#FFFFFF; --ink:#1B1A17; --muted:#7A736A;
+    --tomato:#E0392B; --tomato-dark:#B82B20; --gold:#F4B740; --crust:#E0A964;
+    --line:#EFE6D8; --green:#4C9A52;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:radial-gradient(1200px 600px at 50% -10%, #FFE9CC 0%, var(--cream) 55%);
+    color:var(--ink); min-height:100vh; padding:22px 16px 60px; display:flex; justify-content:center;
+  }
+  .wrap{width:100%;max-width:560px;}
+  .brand{font-size:12px;letter-spacing:.22em;font-weight:800;color:var(--tomato);text-transform:uppercase;text-align:center;margin-bottom:6px;}
+  h1{font-size:30px;line-height:1.1;text-align:center;margin:0 0 8px;font-weight:850;letter-spacing:-.01em;}
+  .sub{text-align:center;color:var(--muted);font-size:15px;line-height:1.5;margin:0 auto 14px;max-width:440px;}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:8px;}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 13px;font-size:13px;font-weight:600;}
+  .tally{text-align:center;font-size:13.5px;font-weight:700;color:var(--green);margin:6px 0 16px;min-height:18px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px 18px 22px;box-shadow:0 18px 40px -22px rgba(120,70,20,.35);}
+  .pizza-stage{display:flex;flex-direction:column;align-items:center;margin:4px 0 6px;}
+  .pizza-svg{width:230px;height:230px;max-width:70vw;filter:drop-shadow(0 14px 18px rgba(150,90,20,.22));transition:transform .25s cubic-bezier(.34,1.56,.64,1);}
+  .pizza-svg.pop{transform:scale(1.05) rotate(-3deg);}
+  .topping{transform-origin:center;transform-box:fill-box;animation:plop .4s cubic-bezier(.34,1.56,.64,1) both;}
+  @keyframes plop{0%{transform:scale(0);}70%{transform:scale(1.18);}100%{transform:scale(1);}}
+  .caption{text-align:center;font-weight:750;font-size:16px;margin:6px 0 2px;min-height:22px;}
+  .caption .count{color:var(--tomato);}
+  label.fld{display:block;font-weight:700;font-size:13px;margin:16px 0 7px;}
+  label.fld .opt{color:var(--muted);font-weight:500;}
+  input[type=text],input[type=email]{width:100%;border:1.5px solid var(--line);border-radius:13px;padding:13px 14px;font-size:16px;color:var(--ink);background:#FFFDFA;outline:none;transition:border-color .15s;}
+  input:focus{border-color:var(--gold);}
+  input.err{border-color:var(--tomato);background:#FEF3F1;}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:7px;}
+  .slot{position:relative;border:1.5px solid var(--line);background:#FFFDFA;border-radius:15px;padding:13px 12px 12px;cursor:pointer;text-align:left;transition:all .14s ease;user-select:none;}
+  .slot:hover{border-color:var(--gold);transform:translateY(-1px);}
+  .slot .dow{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;}
+  .slot .date{font-size:18px;font-weight:800;margin-top:2px;}
+  .slot .badge{display:inline-block;margin-top:7px;font-size:11.5px;font-weight:700;color:var(--green);background:#EEF7EE;border-radius:999px;padding:2px 8px;}
+  .slot .badge.zero{color:var(--muted);background:#F4F0E9;}
+  .slot .tick{position:absolute;top:10px;right:11px;width:22px;height:22px;border-radius:50%;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff;transition:all .14s;}
+  .slot.on{border-color:var(--tomato);background:linear-gradient(180deg,#FFF1EF,#FFFDFA);box-shadow:0 8px 18px -12px rgba(224,57,43,.7);}
+  .slot.on .tick{background:var(--tomato);border-color:var(--tomato);}
+  .slot.on .date{color:var(--tomato-dark);}
+  .send{margin-top:20px;width:100%;border:none;border-radius:15px;padding:16px;font-size:17px;font-weight:800;color:#fff;background:linear-gradient(180deg,#EA4133,var(--tomato-dark));cursor:pointer;box-shadow:0 14px 26px -12px rgba(224,57,43,.8);transition:transform .12s;}
+  .send:active{transform:translateY(1px) scale(.995);}
+  .copywrap{margin-top:12px;text-align:center;}
+  .copy{background:none;border:none;color:var(--muted);font-size:13.5px;font-weight:600;cursor:pointer;text-decoration:underline;text-underline-offset:3px;}
+  .copyhint{font-size:11.5px;color:var(--muted);margin-top:4px;line-height:1.4;}
+  .foot{text-align:center;color:var(--muted);font-size:12.5px;line-height:1.6;margin-top:18px;}
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(120px);background:var(--ink);color:#fff;padding:14px 20px;border-radius:14px;font-weight:700;font-size:15px;box-shadow:0 18px 40px -12px rgba(0,0,0,.5);transition:transform .4s cubic-bezier(.34,1.56,.64,1);z-index:50;max-width:90vw;text-align:center;}
+  .toast.show{transform:translateX(-50%) translateY(0);}
+  .confetti{position:fixed;top:-40px;font-size:24px;pointer-events:none;z-index:40;animation:fall linear forwards;}
+  @keyframes fall{to{transform:translateY(108vh) rotate(420deg);opacity:.9;}}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="brand">10x Founders · Team Alumni</div>
+    <h1>Alumni Pizza Night 🍕</h1>
+    <p class="sub">The old crew, back in one room, with proper pizza. Build your availability pizza — the night with the most slices wins.</p>
+
+    <div class="chips">
+      <span class="chip" id="chipLoc">📍 10x office · Brienner Str. 21</span>
+      <span class="chip" id="chipTime">🕖 19:00–21:00</span>
+    </div>
+    <div class="tally" id="tally"></div>
+
+    <div class="card">
+      <div class="pizza-stage">
+        <svg id="pizza" class="pizza-svg" viewBox="0 0 200 200" aria-hidden="true">
+          <circle cx="100" cy="100" r="94" fill="#E0A964"/>
+          <circle cx="100" cy="100" r="94" fill="none" stroke="#C98E45" stroke-width="3"/>
+          <circle cx="100" cy="100" r="80" fill="#F4C95B"/>
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#E9B23E" stroke-width="2"/>
+          <g id="toppings"></g>
+        </svg>
+        <div class="caption" id="caption">Tap the evenings you can make 👇</div>
+      </div>
+
+      <label class="fld" for="name">Your name</label>
+      <input type="text" id="name" placeholder="e.g. Cara R." autocomplete="name">
+
+      <label class="fld" for="email">Your email <span class="opt">(so you get a calendar hold for each night you pick)</span></label>
+      <input type="email" id="email" placeholder="you@gmail.com" autocomplete="email">
+
+      <label class="fld">Which evenings work? <span class="opt">(pick all that do)</span></label>
+      <div class="grid" id="grid"></div>
+
+      <label class="fld" for="note">Anything to add? <span class="opt">(optional)</span></label>
+      <input type="text" id="note" placeholder="e.g. only after 19:30 / bringing +1">
+
+      <button class="send" id="send">🍕 Send my availability</button>
+      <div class="copywrap">
+        <button class="copy" id="copy">Email didn't open? Tap to copy your answer</button>
+        <div class="copyhint">Copies your name + picks so you can paste them to Fabi on WhatsApp/Slack — handy if your phone has no mail app set up.</div>
+      </div>
+    </div>
+
+    <p class="foot" id="foot">Pizza &amp; drinks on the house · it's a reunion, so you'll see who else is in.<br>Change your mind later? Come back any time and re-submit.</p>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+<script>
+  var ORGANIZER = "fabian.rieth@10xfounders.com";
+  var STORE_KEY = "pizzaPicks_v2";
+  var FALLBACK = {
+    deadline:"Fri 3 July", location:"10x office · Brienner Str. 21", time:"19:00–21:00", respondents:0,
+    evenings:[
+      {id:"jul13",dow:"Mon",date:"Jul 13",count:0},{id:"jul14",dow:"Tue",date:"Jul 14",count:0},
+      {id:"jul15",dow:"Wed",date:"Jul 15",count:0},{id:"jul16",dow:"Thu",date:"Jul 16",count:0},
+      {id:"jul20",dow:"Mon",date:"Jul 20",count:0},{id:"jul21",dow:"Tue",date:"Jul 21",count:0},
+      {id:"jul23",dow:"Thu",date:"Jul 23",count:0}
+    ]
+  };
+  var SPOTS = [[72,74],[131,70],[100,104],[64,118],[138,122],[110,150],[74,148],[100,68]];
+
+  var EVENINGS = [];
+  var selected = {};
+  var grid = document.getElementById("grid");
+  var toppings = document.getElementById("toppings");
+  var caption = document.getElementById("caption");
+  var pizza = document.getElementById("pizza");
+
+  function loadSaved(){
+    try{ return JSON.parse(localStorage.getItem(STORE_KEY)) || {}; }catch(e){ return {}; }
+  }
+  function save(){
+    var picks = EVENINGS.filter(function(ev,i){return selected[i];}).map(function(ev){return ev.id;});
+    try{ localStorage.setItem(STORE_KEY, JSON.stringify({
+      name:document.getElementById("name").value.trim(),
+      email:document.getElementById("email").value.trim(),
+      picks:picks
+    })); }catch(e){}
+  }
+
+  function render(cfg){
+    EVENINGS = cfg.evenings || [];
+    document.getElementById("chipLoc").textContent = "📍 " + (cfg.location || FALLBACK.location);
+    document.getElementById("chipTime").textContent = "🕖 " + (cfg.time || FALLBACK.time);
+    if(cfg.deadline){
+      document.getElementById("foot").innerHTML =
+        "Pizza &amp; drinks on the house · it's a reunion, so you'll see who else is in.<br>Get your slices in by <b>"+cfg.deadline+"</b> · change your mind later? Come back &amp; re-submit.";
+    }
+    var r = cfg.respondents || 0;
+    document.getElementById("tally").textContent = r>0 ? ("🍕 "+r+" of the crew already dropped their slices") : "Be the first to drop your slices 🍕";
+
+    var saved = loadSaved();
+    if(saved.name){ document.getElementById("name").value = saved.name; }
+    if(saved.email){ document.getElementById("email").value = saved.email; }
+
+    grid.innerHTML = "";
+    EVENINGS.forEach(function(ev,i){
+      var c = ev.count || 0;
+      var badge = c>0 ? '<span class="badge">🍕 '+c+' in</span>' : '<span class="badge zero">be the first</span>';
+      var b = document.createElement("div");
+      b.className = "slot";
+      b.setAttribute("role","button"); b.setAttribute("tabindex","0");
+      b.innerHTML = '<div class="dow">'+ev.dow+'</div><div class="date">'+ev.date+'</div>'+badge+'<div class="tick">✓</div>';
+      b.addEventListener("click", function(){ toggle(i,b); });
+      b.addEventListener("keydown", function(e){ if(e.key===" "||e.key==="Enter"){ e.preventDefault(); toggle(i,b);} });
+      grid.appendChild(b);
+      // restore previous pick
+      if(saved.picks && saved.picks.indexOf(ev.id) > -1){ toggle(i,b,true); }
+    });
+    updateCaption();
+  }
+
+  function toggle(i, el, silent){
+    if(selected[i]){
+      delete selected[i]; el.classList.remove("on");
+      var t = document.getElementById("top"+i); if(t) t.parentNode.removeChild(t);
+    } else {
+      selected[i] = true; el.classList.add("on"); addTopping(i);
+      if(!silent){ pizza.classList.add("pop"); setTimeout(function(){ pizza.classList.remove("pop"); },250); }
+    }
+    updateCaption(); if(!silent) save();
+  }
+
+  function addTopping(i){
+    var spot = SPOTS[i % SPOTS.length];
+    var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+    g.setAttribute("id","top"+i); g.setAttribute("class","topping");
+    var c = document.createElementNS("http://www.w3.org/2000/svg","circle");
+    c.setAttribute("cx",spot[0]); c.setAttribute("cy",spot[1]); c.setAttribute("r","11");
+    c.setAttribute("fill","#C8362B"); c.setAttribute("stroke","#9E281F"); c.setAttribute("stroke-width","1.5");
+    g.appendChild(c);
+    var s = document.createElementNS("http://www.w3.org/2000/svg","circle");
+    s.setAttribute("cx",spot[0]-3); s.setAttribute("cy",spot[1]-2); s.setAttribute("r","2.2"); s.setAttribute("fill","#E36055");
+    g.appendChild(s); toppings.appendChild(g);
+  }
+
+  function count(){ return Object.keys(selected).length; }
+  function updateCaption(){
+    var n = count();
+    if(n===0){ caption.innerHTML = "Tap the evenings you can make 👇"; }
+    else if(n===1){ caption.innerHTML = 'Nice — <span class="count">1 slice</span> on your pizza!'; }
+    else if(n>=5){ caption.innerHTML = '<span class="count">'+n+' slices</span> — what a legend 🔥'; }
+    else { caption.innerHTML = '<span class="count">'+n+' slices</span> and counting…'; }
+  }
+
+  function pickedReadable(){
+    return EVENINGS.filter(function(ev,i){return selected[i];}).map(function(ev){return ev.dow+" "+ev.date;});
+  }
+  function pickedIds(){
+    return EVENINGS.filter(function(ev,i){return selected[i];}).map(function(ev){return ev.id;});
+  }
+
+  function buildBody(name,email){
+    var note = document.getElementById("note").value.trim();
+    var lines = [];
+    lines.push("Hey Fabi!"); lines.push("");
+    lines.push("Count me in for the 10x alumni pizza 🍕"); lines.push("");
+    lines.push("Name: "+name);
+    lines.push("Email: "+email);
+    lines.push("Available: "+pickedIds().join(","));
+    lines.push("Readable: "+pickedReadable().join(", "));
+    lines.push("Note: "+(note?note:"—"));
+    lines.push(""); lines.push("— sent from the pizza builder");
+    return lines.join("\r\n");
+  }
+
+  function validate(){
+    var name = document.getElementById("name").value.trim();
+    var email = document.getElementById("email").value.trim();
+    var nameEl = document.getElementById("name"), emailEl = document.getElementById("email");
+    if(!name){ nameEl.classList.add("err"); nameEl.focus(); showToast("Add your name first 🙂");
+      setTimeout(function(){ nameEl.classList.remove("err"); },1800); return null; }
+    if(!email || email.indexOf("@")<1){ emailEl.classList.add("err"); emailEl.focus(); showToast("Add your email so you get the calendar hold 📩");
+      setTimeout(function(){ emailEl.classList.remove("err"); },1800); return null; }
+    if(count()===0){ showToast("Tap at least one evening 🍕"); return null; }
+    return {name:name,email:email};
+  }
+
+  document.getElementById("send").addEventListener("click", function(){
+    var v = validate(); if(!v) return; save();
+    var subject = "Pizza night — my availability 🍕";
+    var body = buildBody(v.name, v.email);
+    var url = "mailto:"+ORGANIZER+"?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
+    party(); showToast("Mamma mia! 🍕 Opening your email — just hit send.");
+    setTimeout(function(){ window.location.href = url; }, 650);
+  });
+
+  document.getElementById("copy").addEventListener("click", function(){
+    var v = validate(); if(!v) return; save();
+    var text = buildBody(v.name, v.email);
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){ showToast("Copied! Paste it to Fabi 📋"); }, function(){ fallbackCopy(text); });
+    } else { fallbackCopy(text); }
+  });
+  function fallbackCopy(text){
+    var ta = document.createElement("textarea"); ta.value=text; document.body.appendChild(ta); ta.select();
+    try{ document.execCommand("copy"); showToast("Copied! Paste it to Fabi 📋"); }
+    catch(e){ showToast("Couldn't copy — just email Fabi your picks 🙂"); }
+    document.body.removeChild(ta);
+  }
+
+  var toastTimer;
+  function showToast(msg){
+    var t = document.getElementById("toast"); t.textContent=msg; t.classList.add("show");
+    clearTimeout(toastTimer); toastTimer=setTimeout(function(){ t.classList.remove("show"); },3200);
+  }
+  function party(){
+    var emojis=["🍕","🎉","🧀","🍅","✨"];
+    for(var i=0;i<18;i++){ (function(i){ setTimeout(function(){
+      var c=document.createElement("div"); c.className="confetti"; c.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+      c.style.left=Math.random()*100+"vw"; c.style.animationDuration=(1.6+Math.random()*1.4)+"s"; c.style.fontSize=(18+Math.random()*16)+"px";
+      document.body.appendChild(c); setTimeout(function(){ if(c.parentNode) c.parentNode.removeChild(c); },3200);
+    }, i*45); })(i); }
+  }
+
+  // Load live config (evenings + counts), fall back to embedded defaults.
+  fetch("./evenings.json", {cache:"no-store"})
+    .then(function(r){ if(!r.ok) throw new Error("no config"); return r.json(); })
+    .then(function(cfg){ render(cfg); })
+    .catch(function(){ render(FALLBACK); });
+</script>
+</body>
+</html>

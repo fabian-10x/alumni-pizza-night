@@ -1,0 +1,24 @@
+{
+  "system": "10x alumni pizza night",
+  "updated": "2026-06-17",
+  "organizer": "fabian.rieth@10xfounders.com",
+  "co_host": "nico.schoenenberger@10xfounders.com",
+  "co_host_required": true,
+  "location": "10x office · Brienner Str. 21, 80333 München",
+  "slot_time": "19:00-21:00 Europe/Berlin",
+  "rsvp_deadline": "2026-07-03",
+  "low_interest_threshold": 1,
+  "lock_in_pct": 90,
+  "reply_subject_match": "Pizza night — my availability",
+  "page_url": "https://fabian-10x.github.io/alumni-pizza-night/",
+  "evenings": [
+    { "id": "jul13", "dow": "Mon", "label": "Mon 13 Jul", "start": "2026-07-13T19:00:00+02:00", "end": "2026-07-13T21:00:00+02:00", "eventId": "ltkpjnhb1i69rl17rd1ld6o2i8", "status": "open", "count": 0 },
+    { "id": "jul14", "dow": "Tue", "label": "Tue 14 Jul", "start": "2026-07-14T19:00:00+02:00", "end": "2026-07-14T21:00:00+02:00", "eventId": "he6ckhvel3dgsblfhqrh0mkg0g", "status": "open", "count": 0 },
+    { "id": "jul15", "dow": "Wed", "label": "Wed 15 Jul", "start": "2026-07-15T19:00:00+02:00", "end": "2026-07-15T21:00:00+02:00", "eventId": "5bmo3tn6o7ro30t9jttmv5oqvo", "status": "open", "count": 0 },
+    { "id": "jul16", "dow": "Thu", "label": "Thu 16 Jul", "start": "2026-07-16T19:00:00+02:00", "end": "2026-07-16T21:00:00+02:00", "eventId": "govdchhu9j4ss432v608pp6gq8", "status": "open", "count": 0 },
+    { "id": "jul20", "dow": "Mon", "label": "Mon 20 Jul", "start": "2026-07-20T19:00:00+02:00", "end": "2026-07-20T21:00:00+02:00", "eventId": "jjfppsqlcvnosovh2ul58d20hk", "status": "open", "count": 0 },
+    { "id": "jul21", "dow": "Tue", "label": "Tue 21 Jul", "start": "2026-07-21T19:00:00+02:00", "end": "2026-07-21T21:00:00+02:00", "eventId": "673lcaf60em7qugioqvm20lp0s", "status": "open", "count": 0 },
+    { "id": "jul23", "dow": "Thu", "label": "Thu 23 Jul", "start": "2026-07-23T19:00:00+02:00", "end": "2026-07-23T21:00:00+02:00", "eventId": "2vh6r9pe045c3v6m3i4ppm2v08", "status": "open", "count": 0 }
+  ],
+  "people": {}
+}
